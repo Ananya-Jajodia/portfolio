@@ -17,7 +17,7 @@ theme = "linkita"
 
 # When set to "true", the Sass files in the `sass` directory in the site root are compiled.
 # Sass files in theme directories are always compiled.
-compile_sass = false
+compile_sass = true
 
 # When set to "true", the generated HTML files are minified.
 minify_html = false
