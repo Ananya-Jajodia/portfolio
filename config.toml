@@ -62,8 +62,8 @@ default_language = "en"
 # Default language is English
 
 # The site title and description; used in feeds by default.
-title = "YOUR_SITE_TITLE"
-description = "YOUR_SITE_DESCRIPTION"
+title = "Ananya's Portfolio"
+description = "My Fast Robots Portfolio"
 
 # When set to "true", a search index is built from the pages and section
 # content for `default_language`.
@@ -350,7 +350,7 @@ header_links = [
 
 # The path to your profile photo.
 # e.g. "icons/github.svg"
-avatar_url = "profile.png"
+avatar_url = "profile.JPG"
 
 # A description of what is in the avatar.
 avatar_alt = ""
@@ -361,11 +361,11 @@ avatar_invert = false
 
 # Profile name.
 # Default value: the username
-name = "YOUR_NAME"
+name = "Ananya Jajodia"
 
 # Profile bio.
 # Supports Markdown.
-bio = "Welcome to my personal site!"
+bio = "I am a current Electrical and Comptuer Engineering Master's of Engineering student at Cornell University!"
 
 # Social icons.
 # "name" should be the file name of "static/icons/*.svg" or
@@ -373,10 +373,10 @@ bio = "Welcome to my personal site!"
 # "url" supports "$BASE_URL".
 # Other variables: "urls", "title", "titles".
 social = [
-    { name = "bluesky", url = "https://bsky.app/profile/username" },
-    { name = "github", url = "https://github.com/username" },
-    { name = "email", url = "mailto:example@example.com" },
-    { name = "rss", url = "$BASE_URL/atom.xml" },
+#    { name = "bluesky", url = "https://bsky.app/profile/username" },
+    { name = "github", url = "https://github.com/Ananya-Jajodia" },
+    { name = "email", url = "mailto:aj477@cornell.edu" },
+#    { name = "rss", url = "$BASE_URL/atom.xml" },
 ]
 
 [extra.profiles.YOUR_USERNAME.open_graph]
