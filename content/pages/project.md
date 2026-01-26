@@ -1,5 +1,5 @@
 +++
-title = "Archive"
+title = "Projects"
 description = ""
 template = "archive.html"
 [extra]

@@ -340,9 +340,9 @@ header_dark_color = "#27272a"
 # Menus
 [extra.menus]
 header_links = [
-  { url = "@/pages/archive.md", name = "Archive" },
+  { url = "@/pages/project.md", name = "Projects" },
   { url = "$BASE_URL/tags/", name = "Tags" },
-  { url = "@/pages/projects/_index.md", name = "Projects" },
+# { url = "@/pages/projects/_index.md", name = "Projects" },
 ]
 
 # Profiles
@@ -365,7 +365,8 @@ name = "Ananya Jajodia"
 
 # Profile bio.
 # Supports Markdown.
-bio = "I am a current Electrical and Comptuer Engineering Master's of Engineering student at Cornell University!"
+bio = "I am a current Electrical and Comptuer Engineering Master's of Engineering student at Cornell University! This is my portfolio for ECE 5160: Fast Robots."
+
 
 # Social icons.
 # "name" should be the file name of "static/icons/*.svg" or
