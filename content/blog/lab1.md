@@ -19,7 +19,7 @@ This lab introduces programming the RedBoard Artemis Nano and explores communica
 The first part of this lab demostrates how to program the RedBoard Artemis Nano and explores some of the features via demo code files. 
 
 ### Basic Setup
-
+To start this lab, the 
 
 
 ### Running Blink
@@ -36,13 +36,12 @@ Next, we run the Serial demo code to demonstate communication with the Artemis v
 ### Testing the Temperature Sensor
 The "analog read" demo code allows us to read the output of the Artemis builtin temperature sensor. 
 
-TODO: mayeb add to this and embed pic
-
+![temp demo](\assets\lab1\1a_task4.png)
 
 ### Testing the Microphone
 Finally, the Microphone Ouptut demo allows use to see the loudest frequency detected by the onboard microphone. You can see the result of my high pitch whisper screaming into the microphone below. 
 
-TODO: Add the screenshot
+![mic demo](\assets\lab1\1a_task5.png)
 
 
 
