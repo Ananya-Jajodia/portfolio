@@ -19,7 +19,7 @@ This lab introduces programming the RedBoard Artemis Nano and explores communica
 The first part of this lab demostrates how to program the RedBoard Artemis Nano and explores some of the features via demo code files. 
 
 ### Basic Setup
-To start this lab, the 
+To start this lab, the Artemis Redboard Nano is connected to a laptop. We use the Arduino IDE to program it.
 
 
 ### Running Blink
@@ -98,10 +98,7 @@ void pitch_analysis(uint32_t real_pitch) {
 The second part of this lab works on communicated with the Artemis via bluetooth. Since we won't have a serial connection with the board when it is in a robot, our primary communication method will be Bluetooth. In this lab, we experiement with thie bluetooth connection and create commands to use for communication.
 
 ### Prelab
-TODO: Finish this
-Setup: Briefly describe the steps taken to set up your computer for Lab 1, showing any results (i.e. MAC address printing)
-
-Add a brief explanation of your understanding of the codebase and how Bluetooth works between your computer and the Artemis
+We set up bluetooth connection with the Artemis board. The board has a unique MAC address that we search for to create a bluetooth connection to our laptop. We also generate a unique UUID to prevent any unplanned connections. Through the bluetooth library, we are able to communicate in many ways, as explored in the lab below. 
 
 
 ### ECHO Command
