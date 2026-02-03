@@ -25,17 +25,13 @@ The first part of this lab demostrates how to program the RedBoard Artemis Nano 
 ### Running Blink
 Like with most microntroller projects, we start with making the onboard led blink. The demo code initializes the built-in led as the output, then repeated turns it on and off with a second delay in between each action.
 
-<video width="640" height="480" controls>
-  <source src="https://github.com/Ananya-Jajodia/portfolio/raw/refs/heads/main/content/blog/assets/lab1/1a_task2.mov" type="video/mov">
-  Your browser does not support the video tag.
-</video>
-
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Qc4H_1dMh_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### Running Serial
 Next, we run the Serial demo code to demonstate communication with the Artemis via the serial port. The serial monitor allows us to send and recieve messages when the Artemis is connected to a serial port on our laptop. The demo code takes a message you sent and echos it back as demontrated in the video below. 
 
-TODO: Embed video
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U1MS4Y5cZ-s?si=J1PLnSdjOiSkn78c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Testing the Temperature Sensor
 The "analog read" demo code allows us to read the output of the Artemis builtin temperature sensor. 
@@ -94,14 +90,8 @@ void pitch_analysis(uint32_t real_pitch) {
 }
 ```
 
-TODO: add video
+<iframe width="560" height="315" src="https://www.youtube.com/embed/umkGZQAJNRc?si=3R3W8tn1r5A9U53w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-
-<!-- * Create [links](https://example.com)
-* Add images
-* And much more!
-
-Check [Linkita's documentation](https://codeberg.org/salif/linkita) to learn about all features. -->
 
 
 ## Lab 1B
@@ -205,10 +195,7 @@ def time_extractor(uuid, byte_time):
 ble.start_notify(ble.uuid['RX_STRING'], time_extractor)
 ```
 
-<video width="320" height="240" controls>
-  <source src="\assets\lab1\1b_task4.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7UmJYuy7hiI?si=Sp2tIQpHGfmlESMf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ### Sending Time in a Loop
@@ -226,11 +213,7 @@ case LOOP_TIME:
     break;
 ```
 
-<video width="320" height="240" controls>
-  <source src="\assets\lab1\1b_task5.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l8ynvO1aNy4?si=OVeYA8adM04JbxYm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ### SEND_TIME_DATA (Sending Time in and Array)
@@ -253,10 +236,7 @@ case SEND_TIME_DATA:
     break;
 ```
 
-<video width="320" height="240" controls>
-  <source src="\assets\lab1\1b_task6.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lnzXqaHZyjQ?si=l90PiixKiBMcY7FP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ### GET_TEMP_READINGS (Sending Temperature)
@@ -283,11 +263,7 @@ case GET_TEMP_READINGS:
     break;
 ```
 
-<video width="320" height="240" controls>
-  <source src="\assets\lab1\1b_task7.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PIdlcKcoraQ?si=PjY15NMwejJDHQ0S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 
