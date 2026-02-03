@@ -36,12 +36,13 @@ Next, we run the Serial demo code to demonstate communication with the Artemis v
 ### Testing the Temperature Sensor
 The "analog read" demo code allows us to read the output of the Artemis builtin temperature sensor. 
 
-![temp demo](\assets\lab1\1a_task4.png)
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab1/1a_task4.png?raw=true" alt="temp sensor">
+
 
 ### Testing the Microphone
 Finally, the Microphone Ouptut demo allows use to see the loudest frequency detected by the onboard microphone. You can see the result of my high pitch whisper screaming into the microphone below. 
 
-![mic demo](\assets\lab1\1a_task5.png)
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab1/1a_task5.png?raw=true" alt="mic sensor">
 
 
 
@@ -123,7 +124,7 @@ case ECHO:
     break;
 ```
 
-![result of running commands in serial monitor](assets\lab1\1b_task2.png)
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab1/1b_task2.png?raw=true" alt="commands">
 
 
 ### SEND_THREE_FLOATS command 
@@ -173,10 +174,7 @@ case GET_TIME_MILLIS:
     break;
 ```
 
-<video width="320" height="240" controls>
-  <source src="\assets\lab1\1b_task3.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7UmJYuy7hiI?si=g4NOvAjRlyY-iAl1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ### Notification Handler
@@ -279,7 +277,7 @@ We transmit time as an `int` which is 4B. If all the Artemis RAM is used to stor
 ### Effective Data Rate, Overhead, and Reliablility
 To observe the data rate of messages of different sizes, I observe the time between transmitting and recieving a string of various lengths. Since each character is 1 byte, the string length is the same as the byte size of the message. I form the string first, record the start time, then transmit. I tested 100 transmission of each byte size and then graphed the average time.
 
-![Graph of Round Trip Time vs Data Length](assets\lab1\grad_task_1b.png)
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab1/grad_task_1b.png?raw=true" alt="commands">
 
 From this graph, we see that smallest and largest packet size show a similar transmission time. This indicates the small packets do introduce a lot of overhead. We see the round trip time spike when the data packets are 100-120 bytes. Overall, the data rate doesn't seem to change too much when the data size changes, showing that there is limited overhead on the messages in general.
 
