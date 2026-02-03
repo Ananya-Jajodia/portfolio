@@ -26,7 +26,7 @@ The first part of this lab demostrates how to program the RedBoard Artemis Nano 
 Like with most microntroller projects, we start with making the onboard led blink. The demo code initializes the built-in led as the output, then repeated turns it on and off with a second delay in between each action.
 
 <video width="640" height="480" controls>
-  <source src="assets/lab1/1a_task2.mov" type="video/mov">
+  <source src="https://github.com/Ananya-Jajodia/portfolio/tree/main/content/blog/assets/lab1/1a_task2.mov" type="video/mov">
   Your browser does not support the video tag.
 </video>
 
