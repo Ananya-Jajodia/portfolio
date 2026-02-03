@@ -100,6 +100,7 @@ The second part of this lab works on communicated with the Artemis via bluetooth
 ### Prelab
 We set up bluetooth connection with the Artemis board. The board has a unique MAC address that we search for to create a bluetooth connection to our laptop. We also generate a unique UUID to prevent any unplanned connections. Through the bluetooth library, we are able to communicate in many ways, as explored in the lab below. 
 
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab1/mac_address.png?raw=true" alt="mic sensor">
 
 ### ECHO Command
 The `ECHO` command takes in a string `s` and prints "Robot says: `s` :)" on the serial port.
