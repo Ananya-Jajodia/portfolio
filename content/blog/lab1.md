@@ -348,3 +348,8 @@ plt.xlabel("Message Size (bytes)")
 plt.ylabel("Round Trip Time (ms)")
 plt.show()
 ```
+
+
+
+## Collaboration
+This lab was complete with discussion with Dyllan Hofflich and Shao Stassen. Lab writeups from previous students such as Lucca Correia, Aiden McNay, and Sana Chawla were refferenced.
