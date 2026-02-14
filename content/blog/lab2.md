@@ -15,7 +15,8 @@ This lab explores an Inertial Measurement Unit (IMU), specifically the [Sparkfun
 ## IMU Set Up
 The IMU is connected to the Artemis with a Qwiic connect able with 4 wires: Power (3.3 V), Ground, Clock (SCL), and Data (SDA). 
 
-![imu connections](assets/lab2/imu_setup.png)
+<!-- ![imu connections](assets/lab2/imu_setup.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/imu_setup.png?raw=true" alt="IMU Connections">
 
 ## AD0_VAL and I2C
 I2C commincation is used fairly often with sensors and other devices that need to write data to an area where it can be read by a microcontroller. I2C uses a clock to synchronize data reads from a specified memory location on the IMU. The IMU will transmit data on the SDA line synchronized with SCL.
@@ -27,14 +28,12 @@ We run the IMU example code. I could see the acceleration raw readings range fro
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SCR4AWbkjnM?si=n9EkuiYxlHbWS2wP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Data Observations
-TODO: Fill this out with information about gyroscrop and accelermeter and roll pitch yaw
-
 # Accelerometer
 ## Calculating and Calibrating Roll and Pitch
 The acceleraometer reads acceleration, or force per mass, being applied to the IMU. When the IMU is stationary, the only force applied to it is gravity. We can use 2 of the raw acceleromter readings to determine the angle of the board for both pitch and roll. In the case of roll, as shown below, we can use the obervation that $a_z = g*\cos(\theta)$ and that $a_x = g*\sin(\theta)$ to determine that the angle $\theta = tan^{-1}(a_x/a_z)$. Since we want $\theta$ to be the correct sign, we use the function $atan2$ to get an angle in radians between $-\pi/2$ and $\pi/2$. The same logic applies to finding the pitch, where $\phi = atan2(a_y, a_z)$. We use these equations with the accelerometer readings to determine roll and pitch.
 
-![explaining to use](assets/lab2/pitch_eq_diag.png)
+<!-- ![explaining to use](assets/lab2/pitch_eq_diag.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/pitch_eq_diag.png?raw=true" alt="Pitch Equation Diagram">
 
 ```c
 #ifdef USE_SPI
@@ -62,25 +61,41 @@ Roll: $\phi_{actual} = 1.01294(\phi_{measured}+0.21)$
 
 Pitch: $\theta_{actual} = 0.998890(\theta_{measured}+1.0)$
 
-![-90 Roll](assets/lab2/roll-90.png)
-![0 Roll](assets/lab2/roll0.png)
-![90 Roll](assets/lab2/roll90.png)
-
-![roll calibration](assets/lab2/roll_cali.png)
-
-![-90 pitch](assets/lab2/pitch90.png)
-![0 Pitch](assets/lab2/pitch0.png)
-![90 Pitch](assets/lab2/pitch-90.png)
-![roll calibration](assets/lab2/roll_cali.png)
+<!-- ![-90 Roll](assets/lab2/roll-90.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/roll-90.png?raw=true" alt="Roll -90 degrees">
 
 
+<!-- ![0 Roll](assets/lab2/roll0.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/roll0.png?raw=true" alt="Roll 0 degrees">
+
+
+<!-- ![90 Roll](assets/lab2/roll90.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/roll90.png?raw=true" alt="Roll 90 degrees">
+
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/roll_cali.png?raw=true" alt="Roll calibration">
+<!-- ![roll calibration](assets/lab2/roll_cali.png) -->
+
+<!-- ![-90 pitch](assets/lab2/pitch90.png) -->
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/pitch90.png?raw=true" alt="Pitch 90 degrees">
+
+<!-- ![0 Pitch](assets/lab2/pitch0.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/pitch0.png?raw=true" alt="Pitch 0 degrees">
+
+<!-- ![90 Pitch](assets/lab2/pitch-90.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/pitch-90.png?raw=true" alt="Pitch -90 degrees">
+<!-- ![roll calibration](assets/lab2/roll_cali.png) -->
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/roll_cali.png?raw=true" alt="Roll calibration">
 
 ## Data Speed and Accuracy
 Overall, the IMU is able to output accelermoter values very quickly and decently accurately. Raw acceleromter values are constantly changing and very noise. Even slight bumps in the table are detected with extreme changed in the accelerometer readings. An easy way to fix this is to low pass the accelerometer to filter out the noise. We start by observing stationary accelerometer readings in the frequency domain. We apply a fast fourier transformation to transform the data into the frequency domain. I attempted to sample 2048 accelerometer readings at a semi constant rate which ended up being about 1329 microseconds between data reads. 
 
-![accelerometer fft](assets/lab2/accel_fft.png)
-![accelerometer fft](assets/lab2/accel_fft_zoom.png)
-
+<!-- ![accelerometer fft](assets/lab2/accel_fft.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/accel_fft.png?raw=true" alt="Accelerometer FFT">
+<!-- ![accelerometer fft](assets/lab2/accel_fft_zoom.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/accel_fft_zoom.png?raw=true" alt="Accelerometer FFT zoomed">
 
 ```python
 f = np.linspace(0, fs/2, int(N/2), endpoint=False) 
@@ -92,8 +107,12 @@ pitch_y = 2.0 / N * np.abs(pitch_fft[:N//2])
 
 I noticed that all data seemed to be contained within 10 Hz so I chose to make this my cutoff. Sticking with the SciPy library, I used the built in `butter` and `filtfilt` functions to low pass the accelerometer values. This showed accelerometer readings that were far more resistant to noise as shown in the graph below.
 
-![acceleration reading roll](assets/lab2/lp_accel.png)
-![acceleration reading roll](assets/lab2/lp_pitch.png)
+<!-- ![acceleration reading roll](assets/lab2/lp_accel.png) -->
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/lp_accel.png?raw=true" alt="Low-pass filtered accelerometer readings">
+
+<!-- ![acceleration reading roll](assets/lab2/lp_pitch.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/lp_pitch.png?raw=true" alt="Low-pass filtered pitch readings">
 
 # Gyroscope
 
@@ -114,23 +133,30 @@ A gyroscope measures angular velocity. By updating out angle estimate based on t
 
 Here's an example of gyroscope readings as I spin the IMU 360 degrees on the yaw axis.
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yawN00Yab7o?si=7igQZdl7tdjUKiLB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/gyro_moving_readings.png?raw=true" alt="IMU gyro moving readings">
 
 
 
-
-
 ## Sample Time
+One factor in gyroscope angle estimation is the time between samples. If we have a long time between samples, we can easily drift from reality since we are estimating the angle based on the change in angle. If we have a short time between samples, we can get more accurate readings since we are updating our angle estimate more frequently. I attempted to observe the difference between a short and long sample time. I noticed that quick movements could not be picked up if the gyroscope is already stationary when sampled again, leading to larger drift.
+
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/normal_gyro.png?raw=true" alt="IMU gyro moving readings">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/gyro_slow.png?raw=true" alt="IMU gyro slowed moving readings">
+
 
 
 ## Complementary Filter Readings
 The solution to account for both the noise in the accelerometer and the drift in the gyroscope is to use a complementary filter. A complementary filter is simply a way of combinding the output for both the accelerometer and the gyrpscope to get non-noisy and accurate angle readings. We do this by taking the weighted average of the accelerometer and gyroscope angle estimates. I chose to take 99% of the gyroscopes reading since it would update quickly and not be noisy. I used 1% of the angle to be the acceleromter's reading to correct any drift introduced by the gyroscope. We can see in the graphs below that the complementary filter greatly improved both angle drift and resistanct to noise for the IMU readings. Light vibrations of the table no longer cause the angle to fluctuate and the gyroscope's drift is adjusted for (as demonstrated clearly in the pitch graph below).
 
-![complementy](assets/lab2/complementary_roll.png)
+<!-- ![complementy](assets/lab2/complementary_roll.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/complementary_roll.png?raw=true" alt="Complementary Filter Roll">
 
-![complementy](assets/lab2/complementary_pitch.png)
+<!-- ![complementy](assets/lab2/complementary_pitch.png) -->
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/complementary_pitch.png?raw=true" alt="Complementary Filter Pitch">
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/32TD-UA93Og?si=4qZrD1Zmu8zUUgkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
