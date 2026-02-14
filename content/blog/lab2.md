@@ -100,10 +100,27 @@ I noticed that all data seemed to be contained within 10 Hz so I chose to make t
 ## Raw Gyroscope Readings
 A gyroscope measures angular velocity. By updating out angle estimate based on time, the gyroscope readings, and the previous angle, we can accurately estimate the angle with far less noise. To estimate angle $\theta$ with the gyroscope, we can use the following equation $\theta_t = \theta_{t-1} + $ gyro_reading $ * dt$. This updates the angle based on the change between the last angle and the current. We can observe that when the imu is stable, we see little to no fluctuation in the gyroscope angle estimates. However, a major issue with relying only on the gyroscope is the value drifting from reality. Since we are estimating the position through the deriviative, we can easily stray from reality as the same estimates in our error compound.
 
-![gyro graphs](assets/lab2/gyro_readings.png)
+<!-- ![gyro graphs](assets/lab2/gyro_readings.png) -->
 
-![gyro fft](assets/lab2/gyro_fft.png)
-![gyro fft](assets/lab2/gyro_fft_zoom.png)
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/gyro_readings.png?raw=true" alt="IMU gyro stationary readings">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/gyro_fft.png?raw=true" alt="IMU gyro fft">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/gyro_fft_zoom.png?raw=true" alt="IMU gyro fft zoomed">
+
+<!-- ![gyro fft](assets/lab2/gyro_fft.png)
+![gyro fft](assets/lab2/gyro_fft_zoom.png) -->
+
+
+Here's an example of gyroscope readings as I spin the IMU 360 degrees on the yaw axis.
+
+
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/gyro_moving_readings.png?raw=true" alt="IMU gyro moving readings">
+
+
+
+
 
 ## Sample Time
 
@@ -115,6 +132,7 @@ The solution to account for both the noise in the accelerometer and the drift in
 
 ![complementy](assets/lab2/complementary_pitch.png)
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/32TD-UA93Og?si=4qZrD1Zmu8zUUgkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ``` python
 fs = 1/2827e-6
@@ -199,8 +217,12 @@ void transmit_imu_data(){
 
 After playing around with my RC car, I observed the car's natural drifting, turning speed/accuracy, and how easy it was to flip the bot over (either by driving into a wall or rapidally switching directions). I noted that telling the bot to drive 'straight' resulted in the car taking a pretty heavy curve. It was pretty easy to get the car to only have 1 or 2 wheel touching the ground causing a straight command to result in the car spinning in a circle (as shown in the video).
 
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/GcuW-iUdXQA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Shao and I also (accidently) observed that the RC car can drive on its side. I'm not sure what to do with this information at this time, but it could be used for a stunt in the future. Driving on the side seemed much more controlled and better for slower motion. (Please ignore my cackling as I found this driving method to be quite funny).
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/oYaDFxAgCsQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # Collaboration
 This lab was worked on with consultation from Shao Stassen. We worked together more closely for the Stunt section. Aidan McNay's student page was also consulted. 
