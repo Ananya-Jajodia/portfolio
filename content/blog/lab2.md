@@ -158,7 +158,6 @@ The solution to account for both the noise in the accelerometer and the drift in
 <!-- ![complementy](assets/lab2/complementary_pitch.png) -->
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/complementary_pitch.png?raw=true" alt="Complementary Filter Pitch">
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/32TD-UA93Og?si=4qZrD1Zmu8zUUgkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ``` python
 fs = 1/2827e-6
@@ -183,6 +182,8 @@ One design choice I made was to do the complementary filter math in python rathe
 
 # Sample Data
 To continously sample data, I created the commands `IMU_START` and `IMU_STOP`. The IMU will record and send out data in batches until it receives the stop command. I chose a batch size of 10 to minimize latency while transmitting mostly up to data readings. This resulted in a sampling rate of about 48.6 milliseconds between data points. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/32TD-UA93Og?si=4qZrD1Zmu8zUUgkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <!-- ![data](assets/lab2/sample_data.png) -->
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab2/sample_data.png?raw=true" alt="data">
