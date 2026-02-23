@@ -54,6 +54,11 @@ TODO: add pic of demo code running with both sensors
 * using the xshut -->
 
 
+For futher testing, I taped both ToFs to a box so that they would be in the same position and facing the same direction. This way, we can compare the data from both sensors to see if they are consistent with eachother. 
+
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/box.jpg?raw=true" alt="box with both sensors" />
+
 
 ## Distance Modes
 Next, we explore the different distance modes of the ToF sensor. The ToF sensor has three different distance modes: short, medium, and long. Each mode has different accuracy and execution speed. I speficially chose to compare the short and long distance modes. The short distance mode has a range of 0.1m to 1.2m and an accuracy of +/- 1mm. The long distance mode has a range of 0.1m to 4m and an accuracy of +/- 3mm. The short distance mode has an execution time of 20ms while the long distance mode has an execution time of 50ms. 
@@ -132,7 +137,9 @@ Using both sensors, we can determine how accurate the sensors are in short dista
 
 
 
-TODO: add picture of setup for accuracy testing 
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/distance_setup.jpg?raw=true" alt="distance measurement setup" />
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/distance_box.jpg?raw=true" alt="distance measurement setup" />
+
 
 ## Execution Time
 
