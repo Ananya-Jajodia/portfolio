@@ -175,7 +175,7 @@ The average time bewtween data points was 6.41 ms.
 ✓ Time v Angle: Include graph of data sent over bluetooth -->
 
 ## 5000: IMU Color and Texture Sensitivity
-I tested the IMU's sensitivity to different colors and textures by placing different materials in front of the IMU at 200 mm and taking the average of the measurements for a set period of time. I found that the IMU was sensitive to different materials but not overly so. 
+I tested the IMU's sensitivity to different colors and textures by placing different materials in front of the IMU at 200 mm and taking the average of the measureuments for a set period of time. I found that the IMU was sensitive to different materials but not overly so. I noticed the most discrepancy with the glass door which was expected since the most light passes through it. Suprisingly, the black garbage bag and the black expomarker also performed poorly. This could indicate a sensitivity to black or a sensitivity to the texture of the materials.
 
 <table border="1" cellpadding="6" cellspacing="0">
   <thead>
@@ -192,7 +192,8 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
   <tbody>
     <tr>
       <td>200.0</td>
-      <td>White door</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/door.jpg?raw=true" alt="door" />
+      White door</td>
       <td>193.51</td>
       <td>217.14</td>
       <td>-23.63</td>
@@ -201,7 +202,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Paper</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/paper.jpg?raw=true" alt="paper" />Paper</td>
       <td>184.36</td>
       <td>200.53</td>
       <td>-16.17</td>
@@ -210,7 +211,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>White Wall</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/wall.jpg?raw=true" alt="white wall" />White Wall</td>
       <td>193.46</td>
       <td>207.47</td>
       <td>-14.01</td>
@@ -219,7 +220,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Whiteboard</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/whiteboard.jpg?raw=true" alt="whiteboard" />Whiteboard</td>
       <td>178.97</td>
       <td>194.64</td>
       <td>-15.67</td>
@@ -228,7 +229,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Expomarker</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/marker.jpg?raw=true" alt="expomarker" />Expomarker</td>
       <td>167.77</td>
       <td>191.2</td>
       <td>-23.43</td>
@@ -237,7 +238,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Orange Tape</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/tape.jpg?raw=true" alt="orange tape" />Orange Tape</td>
       <td>178.89</td>
       <td>197.8</td>
       <td>-18.91</td>
@@ -246,7 +247,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Green Microfiber</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/cloth.jpg?raw=true" alt="green microfiber" />Green Microfiber</td>
       <td>183.18</td>
       <td>203.14</td>
       <td>-19.96</td>
@@ -255,7 +256,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Pink Polyester</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/jacket.jpg?raw=true" alt="pink polyester" />Pink Polyester</td>
       <td>175.82</td>
       <td>199.84</td>
       <td>-24.02</td>
@@ -264,7 +265,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Glass Door</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/door.jpg?raw=true" alt="glass door" />Glass Door</td>
       <td>118.57</td>
       <td>188.69</td>
       <td>-70.12</td>
@@ -273,7 +274,7 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
     </tr>
     <tr>
       <td>200.0</td>
-      <td>Garbage Bag</td>
+      <td><img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/garbage.jpg?raw=true" alt="garbage bag" />Garbage Bag</td>
       <td>169.3</td>
       <td>190.86</td>
       <td>-21.56</td>
@@ -285,8 +286,11 @@ I tested the IMU's sensitivity to different colors and textures by placing diffe
 
 ## 5000: Other Infared Sensors
 
+There are two main types of infared distance sensors. The first is like the time of flight we are using, which measures distance based on the time it takes for a light signal to be recieved back after it is emitted. The second type is a triangulation sensor, which measures distance based on the angle of the reflected light signal. The triangulation sensor is more accurate at close distances but time of flight sensors have a longer range. Time of flights also tend to be faster than triangulation sensors. This makes time of flights better for applications where you need to see objects that are farther away or need to react quickly to your environment. Triangulation sensors seem to be best for when you need a very precise measurement of distance at close range.
 
 ## Collaboration and Sources
-I worked with Shao Stassen and Dyllan Hofflich when soldering the ToF sensors. I worked with Shao when gathering data for accuracy.
+I worked with Shao Stassen and Dyllan Hofflich when soldering the ToF sensors. I worked with Shao when gathering data for accuracy. Aiden Derocher's lab 3 report was also referenced.
 
 [Short vs Long Distance Mode information](https://www.pololu.com/product-info-merged/3415)
+
+[Infared Sensor Types](https://meskernel.net/en/tof-vs-triangulation/)
