@@ -54,8 +54,8 @@ TODO: add pic of demo code running with both sensors
 * using the xshut -->
 
 
-## Distance Modes, Accuracy, and Execution speed
 
+## Distance Modes
 Next, we explore the different distance modes of the ToF sensor. The ToF sensor has three different distance modes: short, medium, and long. Each mode has different accuracy and execution speed. I speficially chose to compare the short and long distance modes. The short distance mode has a range of 0.1m to 1.2m and an accuracy of +/- 1mm. The long distance mode has a range of 0.1m to 4m and an accuracy of +/- 3mm. The short distance mode has an execution time of 20ms while the long distance mode has an execution time of 50ms. 
 
 I experiemented with this by setting one sensor to short distance mode and the other sensor to long distance mode. I then moved the sensors backwards slowly and recorded the distance data from both sensors.
@@ -64,15 +64,229 @@ I experiemented with this by setting one sensor to short distance mode and the o
 
 As shown, the sensors are very accurate in their respective ranges. The short distance mode is more accurate at close distances while the long distance mode is more accurate at longer distances. As soon as the range is exceeded, the sensors become noisy before spitting out erroneous data. This could be a problem in the future since these erroneous data look like valid data so Meep might think it is close to or colliding with an object when it is not. 
 
+
+The long distance mode is also much slower than the short distance mode. This would be a problem for Meep since it needs to be able to react quickly to its environment.
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/tof_speed_diff.png?raw=true" alt="long vs short distance modes" />
+
+With this in mind, we expect Meep to only need to see objects that are close to it in order to avoid collisions. Meep can also drive close to walls for mapping in the future. With this in mind, I will be using the short distance mode for both sensors.
+
+
+## Accuracy
+Using both sensors, we can determine how accurate the sensors are in short distance mode. I measured the distance from the sensor to a wall using a tape measure and compared it to the distance reported by the sensor. I did this for distances of 0.2m, 0.5m, 0.75m, 1m, and 1.51m. We can see that the sensors output different values for the same distance. This is likely due to a difference in facing angle of the sensor to the wall. Overall, we see the sensors are very accurate with a maximum percent error of 8.57% for sensor 2 at 0.2m. Sensor 1 is more accurate than sensor 2 at all distances. This could be due to a difference in the quality of the sensors or a difference in the facing angle of the sensors to the wall.
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Real Value (mm)</th>
+      <th>Sensor 1 (mm)</th>
+      <th>Sensor 2 (mm)</th>
+      <th>Difference</th>
+      <th>Percent Error 1</th>
+      <th>Percent Error 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200.0</td>
+      <td>193.51</td>
+      <td>217.14</td>
+      <td>-23.63</td>
+      <td>-0.0325</td>
+      <td>0.0857</td>
+    </tr>
+    <tr>
+      <td>500.0</td>
+      <td>494.00</td>
+      <td>522.64</td>
+      <td>-28.64</td>
+      <td>-0.0120</td>
+      <td>0.04528</td>
+    </tr>
+    <tr>
+      <td>750.0</td>
+      <td>747.37</td>
+      <td>772.05</td>
+      <td>-24.68</td>
+      <td>-0.0035</td>
+      <td>0.0294</td>
+    </tr>
+    <tr>
+      <td>1000.0</td>
+      <td>994.37</td>
+      <td>1024.96</td>
+      <td>-30.59</td>
+      <td>-0.0056</td>
+      <td>0.02496</td>
+    </tr>
+    <tr>
+      <td>1510.0</td>
+      <td>1517.00</td>
+      <td>1548.50</td>
+      <td>-31.50</td>
+      <td>0.0046</td>
+      <td>0.0255</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+TODO: add picture of setup for accuracy testing 
+
+## Execution Time
+
+Next, I attempted to see how quickly I could get data from one of the sensors to print to the Serial Monitor. I decided to have the sensor print data as fast as possible and using the built in time stamps on the serial monitor to determine the execution time so that recoding the time would not slow it down. The average time between serial prints was 3.87 ms.
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/serial.png?raw=true" alt="serial monitor times" />
+
+
+``` cpp
+void loop(void)
+{
+  if (distanceSensor1.checkForDataReady())
+  {
+    distance = distanceSensor1.getDistance();
+
+    Serial.print("TOF1: ");
+    Serial.print(distance);
+    Serial.println();
+  }
+}
+```
+
+## Integration with IMU and Bluetooth
+
+Finally, I integrated the ToF sensors with the IMU and Bluetooth. I created the command `SENSOR_START` for the Artemis to begin saving and the transmitting the data from the sensors. I then used the `SENSOR_STOP` command to stop transmitting data. I demonstrate this by sldiing a box with the sensors taped on back and forth in front of a wall. The data is read and saved by a notification handler (see previous labs for more details on this).
+
+The average time bewtween data points was 6.41 ms.
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/tof_reading.png?raw=true" alt="tof readings" />
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/imu.png?raw=true" alt="imu readings" />
+
+
 <!-- * Picture of your ToF sensor connected to your QWIIC breakout board
-* Screenshot of Artemis scanning for I2C device (and discussion on I2C address)
+✓ Screenshot of Artemis scanning for I2C device (and discussion on I2C address)
 * Discussion and pictures of sensor data with chosen mode
 * 2 ToF sensors and the IMU: Discussion and screenshot/video of sensors working in parallel
-* Tof sensor speed: Discussion on speed and limiting factor; include code snippet of how you do this
-* Time v Distance: Include graph of data sent over bluetooth (2 sensors)
-* Time v Angle: Include graph of data sent over bluetooth -->
+✓ Tof sensor speed: Discussion on speed and limiting factor; include code snippet of how you do this
+✓ Time v Distance: Include graph of data sent over bluetooth (2 sensors)
+✓ Time v Angle: Include graph of data sent over bluetooth -->
 
 ## 5000: IMU Color and Texture Sensitivity
+I tested the IMU's sensitivity to different colors and textures by placing different materials in front of the IMU at 200 mm and taking the average of the measurements for a set period of time. I found that the IMU was sensitive to different materials but not overly so. 
 
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Real Value (mm)</th>
+      <th>Surface</th>
+      <th>Sensor 1 (mm)</th>
+      <th>Sensor 2 (mm)</th>
+      <th>Difference</th>
+      <th>Percent Error 1</th>
+      <th>Percent Error 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200.0</td>
+      <td>White door</td>
+      <td>193.51</td>
+      <td>217.14</td>
+      <td>-23.63</td>
+      <td>-0.03245</td>
+      <td>0.0857</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Paper</td>
+      <td>184.36</td>
+      <td>200.53</td>
+      <td>-16.17</td>
+      <td>-0.0782</td>
+      <td>0.00265</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>White Wall</td>
+      <td>193.46</td>
+      <td>207.47</td>
+      <td>-14.01</td>
+      <td>-0.0327</td>
+      <td>0.03735</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Whiteboard</td>
+      <td>178.97</td>
+      <td>194.64</td>
+      <td>-15.67</td>
+      <td>-0.10515</td>
+      <td>-0.0268</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Expomarker</td>
+      <td>167.77</td>
+      <td>191.2</td>
+      <td>-23.43</td>
+      <td>-0.16115</td>
+      <td>-0.044</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Orange Tape</td>
+      <td>178.89</td>
+      <td>197.8</td>
+      <td>-18.91</td>
+      <td>-0.10555</td>
+      <td>-0.011</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Green Microfiber</td>
+      <td>183.18</td>
+      <td>203.14</td>
+      <td>-19.96</td>
+      <td>-0.0841</td>
+      <td>0.0157</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Pink Polyester</td>
+      <td>175.82</td>
+      <td>199.84</td>
+      <td>-24.02</td>
+      <td>-0.1209</td>
+      <td>-0.0008</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Glass Door</td>
+      <td>118.57</td>
+      <td>188.69</td>
+      <td>-70.12</td>
+      <td>-0.40715</td>
+      <td>-0.05655</td>
+    </tr>
+    <tr>
+      <td>200.0</td>
+      <td>Garbage Bag</td>
+      <td>169.3</td>
+      <td>190.86</td>
+      <td>-21.56</td>
+      <td>-0.1535</td>
+      <td>-0.0457</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 5000: Other Infared Sensors
+
+
+## Collaboration and Sources
+I worked with Shao Stassen and Dyllan Hofflich when soldering the ToF sensors. I worked with Shao when gathering data for accuracy.
+
+[Short vs Long Distance Mode information](https://www.pololu.com/product-info-merged/3415)
