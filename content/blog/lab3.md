@@ -25,7 +25,7 @@ The disadvantages of this placement are the sensor will be on the back if the ro
 
 We start by soldering the ToF pins to a QWiic connect cable for easy use. As seen in the digram above, the 4 pins of the qwiic connect are soldered to their corresponding pins. Note that red is power, black is ground, blue is SDA (I2C data wire), and yellow is SCL (I2C clock wire).
 
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/soldering.jpg?raw=true" alt="soldering job" />
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/solder.jpg?raw=true" alt="soldering job" />
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/battery.jpg?raw=true" alt="battery" />
 
 By running the Apollo Example05_wire_I2C demo code, we can see the I2C addresses of our devices. The I2C address is the memory location where sensor data will be written on our Artemis as determined by the sensor manufacturer. 
