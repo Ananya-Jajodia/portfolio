@@ -19,14 +19,14 @@ First, we need to chose where we will be placing our ToF sensors on the car (Mee
 
 The disadvantages of this placement are the sensor will be on the back if the robot flips. For mapping our environment in the future, we would have to spin 270 degrees to get a complete mapping. Meep will also not be able to follow or see obstacles on its left.
 
-TODO: make diagram of where stuff goes
-
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/car.png?raw=true" alt="car" />
 
 ### Soldering and initial testing
 
 We start by soldering the ToF pins to a QWiic connect cable for easy use. As seen in the digram above, the 4 pins of the qwiic connect are soldered to their corresponding pins. Note that red is power, black is ground, blue is SDA (I2C data wire), and yellow is SCL (I2C clock wire).
 
-TODO: add pic of soldering job
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/soldering.jpg?raw=true" alt="soldering job" />
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/battery.jpg?raw=true" alt="battery" />
 
 By running the Apollo Example05_wire_I2C demo code, we can see the I2C addresses of our devices. The I2C address is the memory location where sensor data will be written on our Artemis as determined by the sensor manufacturer. 
 
@@ -46,7 +46,8 @@ distanceSensor1.setI2CAddress(0x30); // Set an address that won't conflict
 digitalWrite(SHUTDOWN_PIN, HIGH); // reboot sensor with new address
 ```
 
-TODO: add pic of demo code running with both sensors
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SCR4AWbkjnM?v=yawN00Yab7o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 <!-- * location placement and soldering job
 * I2C address
