@@ -174,6 +174,72 @@ The average time bewtween data points was 6.41 ms.
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab3/imu.png?raw=true" alt="imu readings" />
 
 
+```cpp
+// This function is called in loop when the SENSOR_START command has been sent
+void transmit_sensor_data(){
+    int dropped_data = 0;
+    int j = 0;
+    time_stamps[0] = (int) millis();
+
+    for (i = 0; i < TIME_ARR_SIZE; i++) {
+        if (myICM.dataReady()) {
+          myICM.getAGMT();
+          time_stamps[i] = (int) millis();
+          roll_readings[i] = roll_calc_accel(&myICM);
+          pitch_readings[i] = pitch_calc_accel(&myICM);
+          gyro_roll_readings[i] = myICM.gyrX();
+          gyro_pitch_readings[i] = myICM.gyrY();
+          gyro_pitch_readings[i] = myICM.gyrY();
+          gyro_yaw_readings[i] = myICM.gyrZ();
+        }
+        else{
+          dropped_data++;
+        }
+        if (distanceSensor2.checkForDataReady()) {
+          tof2_readings[i] = distanceSensor2.getDistance();
+        }
+        else{
+          tof2_readings[i] = -100;
+          dropped_data++;
+        }
+        if (distanceSensor1.checkForDataReady()) {
+          tof1_readings[i] = distanceSensor1.getDistance();
+        }
+        else{
+          tof1_readings[i] = -100;
+          dropped_data++;
+        }
+        read_data(); // check if the SENSOR_STOP command is sent
+        if (!sensor_trans){
+          break;
+        }
+    }         
+    // Transmit the data when the buffer is full or when the SENSOR_STOP command is sent  
+    for (j = 0; j < i; j++) {
+        tx_estring_value.clear();
+        tx_estring_value.append(time_stamps[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(roll_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(pitch_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(gyro_roll_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(gyro_pitch_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(gyro_yaw_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(tof1_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(tof2_readings[j]);
+        tx_estring_value.append(":");
+        tx_estring_value.append(dropped_data);
+        tx_characteristic_string.writeValue(tx_estring_value.c_str());
+    }       
+}
+```
+
+
 <!-- * Picture of your ToF sensor connected to your QWIIC breakout board
 ✓ Screenshot of Artemis scanning for I2C device (and discussion on I2C address)
 * Discussion and pictures of sensor data with chosen mode
