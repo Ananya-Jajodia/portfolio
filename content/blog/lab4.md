@@ -65,6 +65,18 @@ PWM, or pulse width modulation, is frequently used to control motor speeds. The 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dMtZA-7GfjU?si=9wTEe8oBbYrEGAU-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
+## Testing Drive
+I started with testing each side which connected to the power supply.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f37mfaf5aR8?si=TH3ohDlebnH7ATaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+Then, I connected the VINs and Grounds together and ran both motors.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LQV6dQjj1qs?si=wT2d_kkCFDHV9FGb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
 
 ## Lowest PWM
 To find the lowest PWM that Meep will move from rest with, I started with `loop` code that would try to drive forward at a set PWM for 3 seconds, then increase the pulse width by one. The robot started moving in the 35-39 range. I tested individual pulse widths from there till the robot began to move at 37 or 14.5% duty cycle.
