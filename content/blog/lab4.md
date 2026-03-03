@@ -12,7 +12,10 @@ In this lab, we work on controlling the robot, Meep, with open-loop pwm signals.
 
 # Wire Set Up
 ## Full Circuit Diagram
+To start, this lab involves soldering the final componenets needed to assemble Meep. The circuit diagram below shows all the connections and GPIOs used by Meep. I chose to use the 850 mAh battery to power both the motors since I wanted to just have two batteries in the robot (one to power the Artemis and one to power both the motors). The 850 mAh battery should be able to handle the current draw without depleting too quickly.
+
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab4/circuit.png?raw=true" alt="Circuit Diagram">
+
 
 I assembled the bot as shown below. I placed the IMU on a flat service and secured it by drilling holes and putting in zipties (idea from Shao Stassen). The ToF is secured with orange tape in this photo, but will be secured with a piece of double sided tape in the near future. Since it is important the ToFs are facing straight, I made sure to secure them onto a flat surface. The Artemis faces with the bluetooth antenna facing outward in the hope of minizing EMI interference with the bluetooth. The motor drivers are placed on either wall on either side of the Artemis, keeping the wires short. I also expanded the hole that the battery wire comes through to store the Artemis battery with the motor battery on the other side of the bot.
 
