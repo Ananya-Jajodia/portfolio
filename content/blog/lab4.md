@@ -181,7 +181,7 @@ I ran open loop control with the robot to try to get it to head towards a wall a
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fnag7o3hDXg?si=b-ic6Hl4Io8iNKzl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-
+# Grad Tasks
 ## 5000: Analog Write
 We can see from the PWM oscilloscope reading that period of the pwm signal is 5.460 ms. Using this, we can calculate the frquency to be 1/0.005460 or 183.15 Hz.
 
