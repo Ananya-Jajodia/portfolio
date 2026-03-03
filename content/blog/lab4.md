@@ -66,7 +66,7 @@ PWM, or pulse width modulation, is frequently used to control motor speeds. The 
 
 
 ## Testing Drive
-I started with testing each side which connected to the power supply.
+I started with testing each side individually by connecting the driver I was testing to the power supply. Note that the code that is running is listed under the Power Supply Settings section. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/f37mfaf5aR8?si=TH3ohDlebnH7ATaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
