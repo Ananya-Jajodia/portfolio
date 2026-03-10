@@ -50,7 +50,7 @@ void pid_wall_dist(float dist){
   if (!distanceSensor2.checkForDataReady()) {
     tof2_readings[i] = -5;
 
-    // no data to extralpolate with
+    // no data to extrapolate with
     if (i == 0) {
       tof1_readings[i] = -5;
       p_data[i] = 0;
@@ -195,6 +195,8 @@ With the original loop waiting for the time of flight to be ready, the average t
 ### Data Extrapolation
 We use linear extrapolation to estimate the next time of flight value when one isn't available. The way I decided to do this was to use the previous two valid time of flight readings to make a slope. I orginally used the last two readings to calcualte the slope (including the last two estimated readings). This was problematic since the estimated readings were often smaller than the real distaces since the bot tends to slow down as it approaches the wall. When an accurate ToF reading came in, the slope would become postive and the code would assume Meep was moving away from the wall rather than towards it. To find the next value, we simply use slope-intercept with the change in time and previous estimated distance.
 
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab5/tof_extrapolation.png?raw=true" alt="PID TOF graph">
+
 
 ```c
 // Code to calculate slope when a new distance reading is available
@@ -241,6 +243,12 @@ From there, I decided to add the integral term, since I wanted to see if PID was
 Since I was experiencing a large amount of overshoot, I decided to add the derivative term and use a full PID controller. I restarted my tuning process, finding a Kp that resulted in the car being stable with steady state error (0.06). I added a small Ki to try to correct for this (0.0001). At this point, the car began to overshoot its set point, so I added Kd (1). I was able to successfully stop at the set point in these conditions.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ubvJBLO58g8?si=n5wruhzsdi6t5vW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab5/tof_data.png?raw=true" alt="TOF graph">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab5/motor_data.png?raw=true" alt="PID graph">
+
 
 
 The PID controller should also be able to find the wall again when displaced. I pulled the car back to show that it was able to recorrect.
