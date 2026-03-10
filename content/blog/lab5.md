@@ -193,7 +193,7 @@ With the original loop waiting for the time of flight to be ready, the average t
 
 
 ### Data Extrapolation
-We use linear extrapolation to estimate the next time of flight value when one isn't available. The way I decided to do this was to use the previous two valid time of flight readings to make a slope. To find the next value, we simply use slope-intercept with the change in time and previous estimated distance.
+We use linear extrapolation to estimate the next time of flight value when one isn't available. The way I decided to do this was to use the previous two valid time of flight readings to make a slope. I orginally used the last two readings to calcualte the slope (including the last two estimated readings). This was problematic since the estimated readings were often smaller than the real distaces since the bot tends to slow down as it approaches the wall. When an accurate ToF reading came in, the slope would become postive and the code would assume Meep was moving away from the wall rather than towards it. To find the next value, we simply use slope-intercept with the change in time and previous estimated distance.
 
 
 ```c
@@ -249,10 +249,23 @@ The PID controller should also be able to find the wall again when displaced. I 
 
 
 ## Grad Task: Integrator Windup
+As previously mentioned, the cummalitive error can get very large very quickly, especially when first starting the controller. Integrator windup occurs when the integrator term gets overpopulated very quickly when the setpoint is set. 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/doazuYY04rw?si=00tKecE6dtijwDO6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+We can avoid this by limiting the max value of the total error. This prevents the error accumulation from blowing up, even if we keep the bot away from the set point for an extended period of time.
 
+``` c
+if (error_total > 2000){
+  error_total = 2000;
+}
+else if (error_total < -3000){
+  error_total = -3000;
+}
+```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GoN54xzSpCY?si=MncTcP97lxBsJ0fI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ## Collaboration and Sources
-I referenced the lecture slides when setting up PID.
+I referenced the lecture slides when setting up PID. I discussed ideas for code structure with Dyllan Hofflich.
