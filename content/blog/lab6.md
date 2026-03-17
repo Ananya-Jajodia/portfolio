@@ -87,33 +87,41 @@ I adjusted the P term to be **1.9** and tested it on a set sequence. I had the r
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mEOyG15NwhU?si=vt0cEIjaYrrXUwKX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-// TODO put p_motor_seq and angle_seq
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/p_motor_seq.png?raw=true" alt="angle">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_seq.png?raw=true" alt="angle">
 
 
 Next, I tried running the robot on carpet and immediately ran into problems. The robot struggled to turn with the currently set deadband region.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/o-HdEpyZORU?si=kyGb1EnPoRhT9ndw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-// TODO put carpet_fail here
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/carpet_fail.png?raw=true" alt="angle">
 
 Since I didn't want to adjust the deadband region but wanted Meep to be able to turn accurately on all floor types, I decided to add the integral term. An integral term of **0.1** allowed Meep to turn accurately on carpet.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IpFZIKDALGo?si=fzSt-GIIcYkBRAOn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-// TODO put angle_carpet
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_carpet.png?raw=true" alt="angle">
 
 We can see the addition of the I term allowed Meep to get enough power to turn successfully!
 
-// TODO pu motor_error_carpet
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/motor_error_carpet.png?raw=true" alt="angle">
 
-Finally, I tested Meep with its newly tuned PI controller on a tile floor, and gave him a few kicks to watch him readjust.
+
+Finally, I tested Meep with its newly tuned PI controller on a tile floor.
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_pi_tile.png?raw=true" alt="angle">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/pi_term_tile.png?raw=true" alt="motor">
+
+I gave Meep some light kicks to demonstrate its ability to readjust.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZqC2eZY8XSM?si=hnRcx0W4Kqk5zQXd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-// TODO put angle_kick
-// TODO put motor_error_kick
-/ angle_pi_tile
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_pix`.png?raw=true" alt="PID TOF graph">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_kick.png?raw=true" alt="Angle Kick">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/motor_error_kick.png?raw=true" alt="PID v Error ">
 
 
 ## Grad Task: Integrator Term
