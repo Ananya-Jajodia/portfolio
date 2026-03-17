@@ -9,10 +9,10 @@ tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "PID", "PWM", "IMU"
 
 # Lab 6: Orientation Control
 
-The goal of this lab was to get the robot, Meep, to be able to turn to a specified orientation, and maintain that position when encountering disturbances. I implement and tune a PI controller that shows success and varying terain conditions. PID or Proportional, Inetegral, and Derivative controller is a controller that adjusts the PWM signal based on the bots current error from a set point. In this lab, the setpoint is a given orientation angle and the error is the difference between estimated angle (via IMU readings) and the setpoint. The proportion term is important for obvious reasons, I also implemented the integral term to help with steady error and make the controller more effective on varying floor conditions (as discusses below).
+The goal of this lab was to get the robot, Meep, to be able to turn to a specified orientation, and maintain that position when encountering disturbances. I implement and tune a PI controller that shows success in varying terain conditions. A PID or Proportional, Inetegral, and Derivative controller is a controller that adjusts the PWM signal based on the bots current error from a set point. In this lab, the setpoint is a given orientation angle and the error is the difference between estimated angle (via IMU readings) and the setpoint. The proportion term is important for obvious reasons. I also implemented the integral term to help with steady error and make the controller more effective on varying floor conditions (as discussed below).
 
 ## Prelab: Data transfer
-One of the major decisions of this lab way how to tranfer data. Transferring each piece of data in the control loop would slow the loop down, resulting in slower updates and slower reaction time. Trying to store all the data is limited by the maximum storage of the Artemis. I decide to store all my values and transmit after PID has stopped. This results in a long waiting time after running my controller, but allows the code to loop fasting during the original run time. I allow the buffer to override the inital values if the controller tries to save more values than the set max buffer length but set the buffer length to the largest number possible to prevent this case from occurring. I parse this data in python lists like I have in previous labs and save them to a CSV for the future.
+One of the major decisions of this lab way how to tranfer data. Transferring each piece of data in the control loop would slow the loop down, resulting in slower updates and slower reaction time. Trying to store all the data is limited by the maximum storage of the Artemis. I decide to store all my values and transmit after PID has stopped. This results in a long waiting time when PID is stopped, but allows the code to loop fast while in the PID loop. I allow the buffer to override the inital values if the controller tries to save more values than the set max buffer length but set the buffer length to the largest number possible to prevent this case from occurring. I parse this data into python lists like I have in previous labs and save them to a CSV for the future.
 
 ```c
 case PID_STOP: {
@@ -73,9 +73,77 @@ case SET_ANGLE: {
 ```
 
 ## Range/Sampling time and DMP
-I enabled the DMP (Digital Motion Processing) to get calibrated accurate IMU angles. The DMP fills a Queue (First In, First Out) with values from the desired report. I chose to get the Game Rotation Vector which return the quaterion of the angle facing, calcultated by combinding the accelerometer and gyroscope values. I chose to not use the magnetometer since Meep only needs to know its relative orientation and I wasn't sure how the megnetometer would perform in different environments. I was able to run its max frequency of about 55 Hz which resulted in an average of **17.6 ms** between motor updates.
+I enabled the DMP (Digital Motion Processing) to get calibrated accurate IMU angles. The DMP fills a Queue (First In, First Out) with values from the desired report. To prevent the DMP FIFO from filling, I had to make sure to pop vaules while waiting for comamnds and while transfering data. I chose to get the Game Rotation Vector which return the quaterion of the angle facing, calcultated by combinding the accelerometer and gyroscope values. I chose to not use the magnetometer since Meep only needs to know its relative orientation and I wasn't sure how the megnetometer would perform in different environments. I was able to run its max frequency of about 55 Hz which resulted in an average of **17.6 ms** between motor updates.
+
+``` c
+void pid_angle(float angle){
+  myICM.readDMPdataFromFIFO(&imu_data);
+  // Skip everything if valid data wasn't available
+  if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) 
+  {
+      time_stamps[i] = millis();
+      get_roll_pitch_yaw(i);
 
 
+      // Calcualate error, total error, and error change
+      float e = yaw_readings[i] - angle;
+      if (e > 180){
+        e -= 360;
+      }
+      else if (e < -180) {
+        e += 360;
+      }
+      error_total += e;
+
+      // Integrator Windup code
+      if (error_total > 1000){
+        error_total = 1000;
+      }
+      else if (error_total < -1000){
+        error_total = -1000;
+      }
+
+      error_change = e-last_error;
+
+
+      // Motor Update
+      int motor_out = (int)(Kp*e + Ki*error_total + Kd*error_change);
+
+      // Record Data
+      p_data[i] = Kp*e;
+      i_data[i] = Ki*error_total;
+      d_data[i] = Kd*error_change;
+      motor_data[i] = motor_out;
+      setpoint_angle[i] = angle;
+
+      // Set motor values while adjusting for the deadband region
+      if (motor_out < 5 && motor_out > -5){
+        right(0, 0);
+      }
+      else if (motor_out > 0){
+        if (motor_out < 140){
+          motor_out = 140;
+        }
+        right(motor_out, motor_out);   
+      }
+      else {
+        if (motor_out > -140){
+          motor_out = -140;
+        }
+        left(-motor_out, -motor_out);
+      }
+      last_error = e;
+      
+      // Increment data index
+      i++;
+      if (i >= TIME_ARR_SIZE){
+        i = 0;
+      }
+      
+  
+  }
+}
+```
 
 ## Tuning process and results
 I started with just a proportional controller on a smooth but grippy floor. With proportion drive, Meep was able to quickly turn to the desire angle with minimal overshoot and negliable steady state error. 
@@ -104,7 +172,7 @@ Since I didn't want to adjust the deadband region but wanted Meep to be able to 
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_carpet.png?raw=true" alt="angle">
 
-We can see the addition of the I term allowed Meep to get enough power to turn successfully!
+We can see the addition of the `I` term allowed Meep to get enough power to turn successfully!
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/motor_error_carpet.png?raw=true" alt="angle">
 
