@@ -1,8 +1,7 @@
 +++
 title = "Lab 6: Orientation Control"
-"
 description = "This lab introduces PID control for orientation"
-date = "2026-03-09"
+date = "2026-03-16"
 
 [taxonomies]
 tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "PID", "PWM", "IMU"]
@@ -114,20 +113,21 @@ Finally, I tested Meep with its newly tuned PI controller on a tile floor, and g
 // TODO put angle_kick
 // TODO put motor_error_kick
 / angle_pi_tile
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/angle_pix`.png?raw=true" alt="PID TOF graph">
+
 
 ## Grad Task: Integrator Term
 The `i` term is proportional to the cummalative error. Without being capped, the error term can greatly accumulate causing a high amount of overshoot once the robot is unstuck. In this lab, this causes the robot to be stuck spinning since the error in unable to decrease so the PWM is always maxed out.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_PO8hTbDdt8?si=L3qEGnAusd8wPUoQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-// TODO put windup
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab5/windup.png?raw=true" alt="PID TOF graph">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/windup.png?raw=true" alt="PID TOF graph">
 
 We can fix this by capping the max value. Earlier in the lab, I capped the cummlative error to 2000. I decided to decrement the cap to 1000 so that Meep would not be stuck overshooting (osciallating) for as long.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/f1d4OXWDE-8?si=WiruG1SxlO6HmOiq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-// TODO put capped_windup
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab6/capped_windup.png?raw=true" alt="PID TOF graph">
 
 
 ## Collaboration and Sources
