@@ -16,21 +16,62 @@ A Kalman filter is a way to combine a mdoel for a system and sensor measurements
 ## Estimating Drag and Momentum
 To start, we need to have an accurate physical model for our bot. Let `u` be the control signal (aka the PWM value (or duty cycle) passed in to our motors), and let `x` be Meep's position, represented as distance from the wall infront of Meep. This leaves us with the equation below where `d` is a constant representing drag while `m` represents momentum.
 
-TODO: Insert screen shots of Lec 13 slide here
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/p1.png?raw=true" alt="physics">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/p2.png?raw=true" alt="digram">
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/p3.png?raw=true" alt="state space equations">
 
 We can find `d` by finding the steady speed for some `u` (motor contorl input). I chose to operate my car at an analog value of 150 (duty cycle of 58.82%). I ran 3 trials and calculated the velocity from each as shown below.
 
-TODO: add triple graph
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/triple.png?raw=true" alt="velocity">
 
 From there, I took the average of the three runs and attempted to fit a expoential decay function to the measurements.
 
-TODO: add vavg and vfitted
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/vavg.png?raw=true" alt="velocity">
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/vfitted.png?raw=true" alt="fitted velocity">
 
 From here, we see the steady state velocity is -3176 mm/s. We can calculate `d` to be 150/the steady state velocity so that the control input can be the passed in PWM value in the future. We calculate `m` to be t_90/ln(1-0.9) where t_90 is the time it takes to get to 90% of the steady velocity. We have a rise time of 1.73 s giving us an `m` of 0.75.
+
+
+```python
+d = -0.047227600035556115
+m = 0.7508005698913823
+A = np.array([
+    [0, 1],
+    [0, d/m]
+])
+
+B = np.array([
+    [0],
+    [1/m]
+])
+
+C = np.array([[1,0]])
+
+def kf(mu,sigma,u,y, dt, update = True):
+    Ad = np.eye(len(A)) + dt * A  
+    Bd = dt * B
+    
+    mu_p = Ad.dot(mu) + Bd.dot(u) 
+    sigma_p = Ad.dot(sigma.dot(Ad.transpose())) + sig_u
+
+    if update:
+        sigma_m = C.dot(sigma_p.dot(C.transpose())) + sig_z
+        kkf_gain = sigma_p.dot(C.transpose().dot(np.linalg.inv(sigma_m)))
+    
+        y_m = y-C.dot(mu_p)
+        mu = mu_p + kkf_gain.dot(y_m)    
+        sigma=(np.eye(2)-kkf_gain.dot(C)).dot(sigma_p)
+        return mu,sigma
+    else:
+        return mu_p, sigma_p
+
+```
+
+
+
 
 ## Tuning noise on simulated data
 From here, we need to tune our uncertainity of our sensors and model. We have 4 parameters we can tune, the position and speed uncertainity from the physics model, the sensor noise, and the initial sigma. 
@@ -260,4 +301,4 @@ Using my original PID settings, we can see that Meep is able to start at its max
 
 
 ## Collaboration and Sources
-I referenced the lecture slides when setting up the Kalman filter.
+I referenced the lecture slides when setting up the Kalman filter. I also referenced Trevor Dales, Aidan Derocher
