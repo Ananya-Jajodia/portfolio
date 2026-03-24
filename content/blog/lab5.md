@@ -4,7 +4,7 @@ description = "This lab introduces PID control"
 date = "2026-03-09"
 
 [taxonomies]
-tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "PID", "PWM"]
+tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "PID", "PWM", "Time of Flight"]
 +++
 
 # Lab 5: Linear PID control and Linear interpolation
