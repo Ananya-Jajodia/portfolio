@@ -307,4 +307,4 @@ Using my original PID settings, we can see that Meep is able to start at its max
 
 
 ## Collaboration and Sources
-I referenced the lecture slides when setting up the Kalman filter. I also referenced Trevor Dales, Aidan Derocher
+I referenced the lecture slides when setting up the Kalman filter. I also referenced Trevor Dales and Aidan Derocher's lab writeups.
