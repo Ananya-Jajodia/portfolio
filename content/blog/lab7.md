@@ -11,10 +11,10 @@ tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "PID", "PWM", "Time
 The goal of this lab is to implement a Kalman filter so the robot, Meep, is able to drive at a high speed towards a wall and stop before hitting it. We do this by creating a physics model to predict Meep's movement, then tuning a Kalman filter and using its predictions to estimate position while waiting for feedback from the time of flight.
 
 ## What is a Kalman Filter?
-A Kalman filter is a way to combine a mdoel for a system and sensor measurements to get an accurate estimate for the system. In this case, we have a time of flight that give accurate, but slow estimates for our position. By creating a physics model for our system, we can combine a calculated position with our sensor measurements to get more accurate location data for our robot. 
+A Kalman filter is a way to combine a model for a system and sensor measurements to get an accurate estimate for the system. In this case, we have a time of flight that give accurate, but slow estimates for our position. By creating a physics model for our system, we can combine a calculated position with our sensor measurements to get quicker and more accurate location data for our robot. 
 
 ## Estimating Drag and Momentum
-To start, we need to have an accurate physical model for our bot. Let `u` be the control signal (aka the PWM value (or duty cycle) passed in to our motors), and let `x` be Meep's position, represented as distance from the wall infront of Meep. This leaves us with the equation below where `d` is a constant representing drag while `m` represents momentum.
+To start, we need to have an accurate physical model for our bot. Let `u` be the control signal (aka the PWM value or duty cycle) passed in to our motors), and let `x` be Meep's position, represented as distance from the wall infront of Meep. This leaves us with the equation below where `d` is a constant representing drag while `m` represents momentum.
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/p1.png?raw=true" alt="physics">
 
@@ -108,7 +108,7 @@ sig_z=np.array([[sigma_3**2]])
 
 
 ## Implement the Kalman Filter with PID
-From there, I implemented the Kalman filter on the Artmis as shown below
+From there, I implemented the Kalman filter on the Artemis as shown below
 
 ```cpp
 Matrix<2,1> mu = {0,0}; 
@@ -286,7 +286,6 @@ void pid_wall_dist(float dist){
     i = 0;
   }
 }
-
 ```
 
 
