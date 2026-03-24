@@ -97,7 +97,14 @@ This made me reevalute my position and velocity uncertainity. I expect the physi
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab7/extra.png?raw=true" alt="good extrapolating kalman">
 
+```python
+sigma_1 = np.sqrt((1**2)*1/dt) # position variance
+sigma_2 =  np.sqrt((50**2)*1/dt) # speed variance
+sigma_3 = 10 # sensor noise
 
+sig_u=np.array([[sigma_1**2,0],[0,sigma_2**2]])
+sig_z=np.array([[sigma_3**2]])
+```
 
 
 ## Implement the Kalman Filter with PID
