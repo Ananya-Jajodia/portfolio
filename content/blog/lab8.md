@@ -216,5 +216,12 @@ On my way to making the flip work, I ended up executing both stunts as shown in 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oBGvP337xO4?si=WhtS1QSsjvi8OtG_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+I also managed to balance the car perfectly so that it could do a handstand!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cPF2Yp4CDBY?si=EsuLt_mxW94_70Jy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+
 ## Collaboration and Sources
 None. Thanks to the TAs for the help!
