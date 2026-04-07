@@ -204,11 +204,17 @@ Here are the results. I adjusted the Kp, Ki, and Kd as I went. I found that a lo
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YIAmRXd7Vak?si=_fMXIT7k4R1n5k5I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/V6829iFoS18?si=g8Hn38cv9botZC4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cnvtcc6dPug?si=zzuR-kYFlJjTvXQT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+## Blooper
 
+On my way to making the flip work, I ended up executing both stunts as shown in the video below:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oBGvP337xO4?si=WhtS1QSsjvi8OtG_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Collaboration and Sources
 None. Thanks to the TAs for the help!
