@@ -174,18 +174,18 @@ To test this, I created a box for Meep to try mapping
 
 That resulted in the map below.
 
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/box.png?raw=true" alt="tof and kalman filter readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/box.png?raw=true" alt="tof readings">
 
 Since I noticed the side time of flight having some much smaller readings, I adjusted its angle. That resulted in the graph below
 
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/fixed.png?raw=true" alt="tof and kalman filter readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/fixed.png?raw=true" alt="tof readings">
 
 
 My sensor readings mostly agree. The discrepency between them is likely the result of having different distances due to their physical placement. As the car rotates, the front sensor will typically get closer to the wall it is reading from than the side sensor. Even in this small space, we already see quite a bit of error in both the sensors. I would reason that, in an empty room, its likely that one of the sensors would hallunicate some sort of wall or blockage that does not exist. It is likely that we are going to get a lot of noise data points and will have to look for where walls appear on mulitple trials to confirm where the real walls are located.
 
 ### Real Environment
 
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/irl_env.HEIC?raw=true" alt="tof and kalman filter readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/irl_env.HEIC?raw=true" alt="tof readings">
 
 This is the environment we are trying to map. I measured the distance at 20 different angles, taking 5 measurements at each to try to offset bad readings. I got data from several locations in the environment that were a set distance apart. Specifically, I grabed data from (0,0), (-3,-2), (5,3), (0,3), and (5,-3). At each point, Meep would rotate and gather data.
 
@@ -193,10 +193,94 @@ This is the environment we are trying to map. I measured the distance at 20 diff
 
 The mapping from each point can easily be seen in polar coordinates as shown below.
 
-<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/polar.png?raw=true" alt="tof and kalman filter readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/polar.png?raw=true" alt="tof readings">
+
+I continued mapping, getting the data below.
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/polar1.png?raw=true" alt="tof readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/polar2.png?raw=true" alt="tof readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/polar3.png?raw=true" alt="tof readings">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/polar4.png?raw=true" alt="tof readings">
+
+
+## Transforming the data
+From here, we have data in the robot frame. To combine our data together, we can use a tranformation matrix to rotate and translate our data to the world frame, which will allow us to combine the data together. Our rotation matrix consists of a rotation (in blue) and translation (in purple). Since I started every trial with the bot facing along the positive x in our environment, we can map the inital angle to theta below and adjust from there.
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/math.png?raw=true" alt="tof readings">
+
+While using the inital theta as the rotation works for some of the data, there are many places where I was not precise with placing the robot's facing angle. I adjust these by graphing the transformed data, then measuring the angle offset.
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/measure.png?raw=true" alt="ms paint screenshot with an image of a protractor over a segment of the enviroment">
+
+The location of the sensors in the robot frame is not precisely (0,0). To be more accurate, I should have used a translation matrix to adjust for the location of the sensors. I found that the readings from the sensors mostly lined up so I decided to forgo this step when processing the data.
+
+
+## Results
+
+After adjusting the rotation values, I ended up with the maps below
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/both_tof.png?raw=true" alt="map">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/front_tof.png?raw=true" alt="map">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/side_tof.png?raw=true" alt="map">
+
+
+These mappings roughly map to the real environment as shown below
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/both_map.png?raw=true" alt="map">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/front_map.png?raw=true" alt="map">
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/side_map.png?raw=true" alt="map">
+
+
+<img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/env.jpg?raw=true" alt="map">
 
 
 
+
+``` python
+# locations in mm
+x_off = [0, 0, 1524, 1524, -914.4]
+y_off = [0, 914.4, 914.4, -914.4, -609.6]
+
+# adjusted offsets for the rotation matrix
+theta_off = np.deg2rad(np.array([68.586, 54.65656937979465, 64.538,  115.60284796050428, 60.6559914284864]))
+
+# plot everything
+plt.figure()
+
+for i in range(5):
+    # convert degrees to radians
+    theta = np.deg2rad(data_arrays[f"yaw_{i}"] + 90) # add 90 to the side sensor so that it aligns with the front sensor
+    theta2 = np.deg2rad(data_arrays[f"yaw_{i}"])
+
+    theta_offset = theta_off[i]
+    
+    rotation_matrix = np.array([[np.cos(theta_offset), -np.sin(theta_offset), x_off[i]], 
+                                [np.sin(theta_offset), np.cos(theta_offset), -y_off[i]], 
+                                [   0,                  0,                   1]])
+
+    
+    r = data_arrays[f"tof1_{i}"]
+    r2 = data_arrays[f"tof2_{i}"]
+    
+    # polar to cartesian
+    x = r * np.cos(theta)
+    y = r * np.sin(theta)
+    x2 = r2 * np.cos(theta2)
+    y2 = r2 * np.sin(theta2)
+
+    # transform the readings
+    roatated = rotation_matrix @ [x, y, np.ones_like(x)]
+    roatated2 = rotation_matrix @ [x2, y2, np.ones_like(x2)]
+
+    # then graph them
+    plt.scatter(roatated[0], roatated[1], s=1, label = f"tof 1 data {i}")
+    plt.scatter(roatated2[0], roatated2[1], s=1, label = f"tof 2 data {i}")
+
+plt.gca().set_aspect('equal')
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("2D Map from Side TOF")
+# plt.legend() # The legend blocks the plot so I commented it out for the screenshots. Its mostly useful for debugging
+plt.show()
+```
 
 ## Collaboration and Sources
 I consulted Jack Long's website and discussed rotation vector mapping with Dyllan Hofflich.
