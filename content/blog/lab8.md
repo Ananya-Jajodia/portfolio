@@ -1,6 +1,6 @@
 +++
 title = "Lab 8: Stunts"
-description = "This lab introduces the Kalman Filter"
+description = "In this lab, we execute a flip and drift using PID and Kalman filters"
 date = "2026-04-06"
 
 [taxonomies]
