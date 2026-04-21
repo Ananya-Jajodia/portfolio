@@ -1,6 +1,6 @@
 +++
-title = "Lab 9: Stunts"
-description = "In this lab, we execute a flip and drift using PID and Kalman filters"
+title = "Lab 9: Mapping"
+description = "In this lab, we use our sensors to create a map of our environment "
 date = "2026-04-14"
 
 [taxonomies]

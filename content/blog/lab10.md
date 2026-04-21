@@ -1,6 +1,6 @@
 +++
 title = "Lab 10: Grid Localization using Bayes Filter"
-description = "In this lab, we execute a flip and drift using PID and Kalman filters"
+description = "In this lab, we use a bayes filter to estimate position"
 date = "2026-04-20"
 
 [taxonomies]
