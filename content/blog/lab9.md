@@ -232,8 +232,6 @@ These mappings roughly map to the real environment as shown below
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab9/env.jpg?raw=true" alt="map">
 
 
-
-
 ``` python
 # locations in mm
 x_off = [0, 0, 1524, 1524, -914.4]
