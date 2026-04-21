@@ -8,12 +8,12 @@ tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "Bayes Filter"]
 +++
 
 # Lab 10: Grid Localization using Bayes Filter
-In this lab, we implement a bayes filter and ran it on a simulation of the environment from Lab 9. We do this to estimate our position in th given environment based on our sensor data and kinematic model.
+In this lab, we implement a bayes filter and ran it on a simulation of the environment from Lab 9. We do this to estimate our position in the given environment based on our sensor data and kinematic model.
 
 ## Implementing the filter
 
 ### Computing Control
-First, we make a function to calculate the control infromation based on our current position and our previous position. Our control information is described in 3 parts. First, we have a rotation matrix that rotates the robot to face in the direction we wish to move. Then, we have a translation matrix that described the movement itself. Finally, we rotate so the robot is facing towards its cuurent yaw.
+First, we make a function to calculate the control infromation based on our current position and our previous position. Our control information is described in 3 parts. First, we have a rotation matrix that rotates the robot to face in the direction we wish to move. Then, we have a translation matrix that described the movement itself. Finally, we rotate so the robot is facing towards its curent yaw. 
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab10/control.png?raw=true" alt="equations and visual for controls from Helbling Lecuture">
 
@@ -38,7 +38,7 @@ def compute_control(cur_pose, prev_pose):
 ```
 
 ### Odometry Motion Model
-Now that we can calulate the control, we can calculate the probability of that the control sequence occured given our current position, previous position, and the inputed control data.
+Now that we can calculate the control, we can calculate the probability of that the control sequence occured given our current position, previous position, and the inputed control data.
 
 ```python
 def odom_motion_model(cur_pose, prev_pose, u):
