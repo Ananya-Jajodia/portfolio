@@ -8,7 +8,7 @@ tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "Bayes Filter"]
 +++
 
 # Lab 11: Localization on the real robot
-In this lab, we implement a bayes filter and run in in the environment from lab 9 to estimate the robots position on our sensor data.
+In this lab, we implement a bayes filter and run in in the environment from lab 9 to estimate the robot's position on our sensor data.
 
 ## Simulation
 We start by running a simulation to test localization. Once we confirm this is working, we can move on to implementing localization on the real robot.
