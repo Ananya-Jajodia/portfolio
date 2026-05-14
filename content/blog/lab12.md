@@ -1,7 +1,7 @@
 +++
 title = "Lab 12: Path Planning and Execution"
 description = "In this lab, we use a bayes filter for localization and PID for control to follow a path"
-date = "2026-04-27"
+date = "2026-05-13"
 
 [taxonomies]
 tags = ["ece5160", "Artemis RedBoard Nano", "C Programming", "Bayes Filter"]
@@ -20,7 +20,7 @@ To do this, we need to attempt to move to next waypoint and then localize once w
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab12/state.png?raw=true" alt="distance v time for meep">
 
-Since we already established how to localize in Lab 12, we needed to eestablish a method for moving between way points in this lab. I decided to use PID to achieve the exact facing angle for each move, then send a straight motor command to drive to the point based on the distance that Meep (my robot) needed to travel. To figure out the distance Meep was expected to travel over time, I used data I had gathered from Lab 7 of Meep traveling when sent a 58.8% duty cycle. 
+Since we already established how to localize in Lab 11, we needed to establish a method for moving between way points in this lab. I decided to use PID to achieve the exact facing angle for each move, then send a straight motor command to drive to the point based on the distance that Meep (my robot) needed to travel. To figure out the distance Meep was expected to travel over time, I used data I had gathered from Lab 7 of Meep traveling when sent a 58.8% duty cycle. 
 
 
 
@@ -61,7 +61,7 @@ def time_for_distance(desired_distance, initial_guess=500):
     return t_solution/2
 ```
 
-I also needed a way to calibrate the angle in the world frame to the facing angle from Meep's perspective. I desided to just grab the facing and when I set Meep up at 0 degrees at the beginning of a run and use that offset to adjust all future facing angles for the rest of the run. This worked very well.
+I also needed a way to calibrate the angle in the world frame to the facing angle from Meep's perspective. I decided to just grab the facing angle and when I set Meep up at 0 degrees at the beginning of a run and use that offset to adjust all future facing angles for the rest of the run. This worked very well.
 
 Then I executed the seqeunce below:
 
@@ -112,12 +112,12 @@ for i in range(1, len(waypoint_list)):
 <iframe width="560" height="315" src="https://www.youtube.com/embed/WF-2fqxKTvQ?si=sIOd1_iWnAWvcNiw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-The video above is the result of my path planning and execution. Meep does an excelent job following the desired path. When it ends up in the wrong place, it localizes to the correct place and adjusts. Since Meep wasn't coded to dodge walls, I do run into the problem of Meep path planning through walls and running into them rather than going around them. My attempt to save Meep from the wall into this video just results in it making a direct collision with the center obstacle. 
+The video above is the result of my path planning and execution. Meep does an excellent job following the desired path. When it ends up in the wrong place, it localizes to the correct place and adjusts. Since Meep wasn't coded to dodge walls, I do run into the problem of Meep path planning through walls and running into them rather than going around them. My attempt to save Meep from the wall into this video just results in it making a direct collision with the center obstacle. 
 
 
 <img src="https://github.com/Ananya-Jajodia/portfolio/blob/main/content/blog/assets/lab12/path.png?raw=true" alt="meep's path">
 
-The only time localization failed was the second to last way point. This was likely due to that area not having anough uniqie features to distinguish it from the point it ultimately localized too.
+The only time localization failed was the second to last way point. This was likely due to that area not having anough unique features to distinguish it from the point it ultimately localized too.
 
 ## Collaboration and Sources
 I referred to [Lucca Correia](https://correial.github.io/LuccaFastRobots/Fast%20Robots%20Stuff/lab-12/)'s lab report when writing mine.
