@@ -120,4 +120,4 @@ The video above is the result of my path planning and execution. Meep does an ex
 The only time localization failed was the second to last way point. This was likely due to that area not having anough unique features to distinguish it from the point it ultimately localized too.
 
 ## Collaboration and Sources
-I referred to [Lucca Correia](https://correial.github.io/LuccaFastRobots/Fast%20Robots%20Stuff/lab-12/)'s lab report when writing mine.
+I referred to [Lucca Correia](https://correial.github.io/LuccaFastRobots/Fast%20Robots%20Stuff/lab-12/)'s lab report when writing mine. Thank you Professor and TAs for your help throughout this course!
