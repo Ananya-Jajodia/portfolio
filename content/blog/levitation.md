@@ -1,12 +1,11 @@
 +++
 title = "FPGA-Controlled Acoustic Levitation"
 description = "FPGA-controlled phased ultrasonic array that levitates and moves lightweight particles in midair using acoustic standing waves"
-date = "2026-05-13"
+date = "2026-05-15"
 
 [taxonomies]
 tags = ["ece5760", "DE1-SoC FPGA", "C Programming", "Ultrasonics", "Verilog"]
 +++
-# FPGA-Controlled Acoustic Levitation
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-T1ODJWkBr0?si=Bfx2a5PL1oo1SjG1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

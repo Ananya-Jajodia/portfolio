@@ -8,9 +8,8 @@ tags = ["AI", "Poker", "PPO"]
 +++
 
 Paper by: Katie Huntley and Ananya Jajodia
-# PPOker: Adaptive Clipping with PPO in Imperfect Information Environment
 
-
+## Introduction
 Poker, the popular betting game since the 18th century, presents an interesting challenge in the context of robot learning. As opposed to most card games, success in poker heavily relies on bluffing, a tactic where players mask their abilities or intentions, and imperfect information, where some aspects of the game (the opponent’s card and the cards that will be on the table) are hidden from the player. A robot, unable to feel or express such emotion, has no way of reading other players’ body language and must overcome the lack of information to make game-winning decisions. 
 
 In the following paragraphs we propose a way to overcome this imperfect information to train a successful poker agent. We utilize proximate policy optimization (PPO) combined with adaptive, observation-based clipping to train an agent to compete against two opponent strategies.
